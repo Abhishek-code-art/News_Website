@@ -1,0 +1,20 @@
+{
+    "articles": [
+        {
+            "title": "The Rise of AI",
+            "content": "AI is transforming the world.",
+            "authorID": 3,
+            "publishDate": "2024-01-01",
+            "status": "published",
+            "categoryID": 1
+        },
+        {
+            "title": "Health Benefits of Yoga",
+            "content": "Yoga is beneficial for physical and mental health.",
+            "authorID": 3,
+            "publishDate": "2024-01-02",
+            "status": "published",
+            "categoryID": 2
+        }
+    ]
+}

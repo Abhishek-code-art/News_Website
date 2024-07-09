@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if object %}Edit ArticleTag{% else %}Create ArticleTag{% endif %}</title>
+</head>
+<body>
+    <h1>{% if object %}Edit ArticleTag{% else %}Create ArticleTag{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if object %}Update{% else %}Create{% endif %}</button>
+    </form>
+    <a href="{% url 'articletag_list' %}">Back to ArticleTag List</a>
+</body>
+</html>

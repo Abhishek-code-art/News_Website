@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import User, Role, Article, Category, Comment, Tag, ArticleTag
+from .models import User, Role, Article, Category, Tag, ArticleTag
+
+def home(request):
+    return render(request, 'home.html')
+
 
 class RoleListView(ListView):
     model = Role

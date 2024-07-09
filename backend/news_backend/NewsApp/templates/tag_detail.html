@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tag Detail</title>
+</head>
+<body>
+    <h1>{{ object.tagName }}</h1>
+    <a href="{% url 'tag_update' object.pk %}">Edit</a>
+    <form action="{% url 'tag_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'tag_list' %}">Back to Tag List</a>
+</body>
+</html>

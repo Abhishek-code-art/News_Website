@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ArticleTag List</title>
+</head>
+<body>
+    <h1>ArticleTag List</h1>
+    <ul>
+        {% for articletag in object_list %}
+            <li><a href="{% url 'articletag_detail' articletag.pk %}">Article: {{ articletag.articleID.title }} - Tag: {{ articletag.tagID.tagName }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'articletag_create' %}">Create New ArticleTag</a>
+</body>
+</html>

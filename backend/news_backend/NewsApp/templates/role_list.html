@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Role List</title>
+</head>
+<body>
+    <h1>Role List</h1>
+    <ul>
+        {% for role in object_list %}
+            <li><a href="{% url 'role_detail' role.pk %}">{{ role.roleName }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'role_create' %}">Create New Role</a>
+</body>
+</html>

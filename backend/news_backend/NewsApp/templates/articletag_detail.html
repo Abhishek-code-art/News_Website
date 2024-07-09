@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ArticleTag Detail</title>
+</head>
+<body>
+    <h1>Article: {{ object.articleID.title }} - Tag: {{ object.tagID.tagName }}</h1>
+    <a href="{% url 'articletag_update' object.pk %}">Edit</a>
+    <form action="{% url 'articletag_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'articletag_list' %}">Back to ArticleTag List</a>
+</body>
+</html>

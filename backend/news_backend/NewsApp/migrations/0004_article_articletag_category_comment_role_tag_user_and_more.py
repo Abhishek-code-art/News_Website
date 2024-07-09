@@ -77,11 +77,7 @@ class Migration(migrations.Migration):
             name='categoryID',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsApp.category'),
         ),
-        migrations.AddField(
-            model_name='comment',
-            name='articleID',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsApp.article'),
-        ),
+        
         migrations.AddField(
             model_name='articletag',
             name='tagID',

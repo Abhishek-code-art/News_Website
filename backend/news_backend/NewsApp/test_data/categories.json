@@ -1,0 +1,16 @@
+{
+    "categories": [
+        {
+            "name": "Technology",
+            "description": "All about the latest technology"
+        },
+        {
+            "name": "Health",
+            "description": "Health and wellness articles"
+        },
+        {
+            "name": "Business",
+            "description": "Business and finance news"
+        }
+    ]
+}

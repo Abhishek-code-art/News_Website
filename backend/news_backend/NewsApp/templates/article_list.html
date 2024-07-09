@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article List</title>
+</head>
+<body>
+    <h1>Article List</h1>
+    <ul>
+        {% for article in object_list %}
+            <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'article_create' %}">Create New Article</a>
+</body>
+</html>

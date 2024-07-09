@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Role Detail</title>
+</head>
+<body>
+    <h1>{{ object.roleName }}</h1>
+    <p>{{ object.description }}</p>
+    <a href="{% url 'role_update' object.pk %}">Edit</a>
+    <form action="{% url 'role_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'role_list' %}">Back to Role List</a>
+</body>
+</html>

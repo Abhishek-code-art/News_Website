@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Detail</title>
+</head>
+<body>
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.content }}</p>
+    <p>Author: {{ object.authorID.username }}</p>
+    <p>Publish Date: {{ object.publishDate }}</p>
+    <p>Status: {{ object.status }}</p>
+    <p>Category: {{ object.categoryID.name }}</p>
+    <a href="{% url 'article_update' object.pk %}">Edit</a>
+    <form action="{% url 'article_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'article_list' %}">Back to Article List</a>
+</body>
+</html>

@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 class Role(models.Model):
     roleID = models.AutoField(primary_key=True)
     roleName = models.CharField(max_length=100)
@@ -39,16 +37,6 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
-
-class Comment(models.Model):
-    commentID = models.AutoField(primary_key=True)
-    articleID = models.ForeignKey(Article, on_delete=models.CASCADE)
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    commentDate = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Comment by {self.userID} on {self.articleID}"
 
 class Tag(models.Model):
     tagID = models.AutoField(primary_key=True)

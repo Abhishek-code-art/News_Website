@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tag List</title>
+</head>
+<body>
+    <h1>Tag List</h1>
+    <ul>
+        {% for tag in object_list %}
+            <li><a href="{% url 'tag_detail' tag.pk %}">{{ tag.tagName }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'tag_create' %}">Create New Tag</a>
+</body>
+</html>
