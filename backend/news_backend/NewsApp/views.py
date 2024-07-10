@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import User, Role, Article, Category, Tag, ArticleTag
+from .forms import ArticleForm
 
 def home(request):
     return render(request, 'home.html')
@@ -92,16 +93,28 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    fields = ['title', 'content', 'authorID', 'publishDate', 'status', 'categoryID']
+    form_class = ArticleForm
     template_name = 'article_form.html'
     success_url = reverse_lazy('article_list')
+
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.save()
+        form.save_m2m()  # Save the many-to-many relationships
+        return super().form_valid(form)
 
 class ArticleUpdateView(UpdateView):
     model = Article
-    fields = ['title', 'content', 'authorID', 'publishDate', 'status', 'categoryID']
+    form_class = ArticleForm
     template_name = 'article_form.html'
     success_url = reverse_lazy('article_list')
 
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.save()
+        form.save_m2m()  # Save the many-to-many relationships
+        return super().form_valid(form)
+    
 class ArticleDeleteView(DeleteView):
     model = Article
     template_name = 'article_confirm_delete.html'
@@ -158,5 +171,19 @@ class ArticleTagDeleteView(DeleteView):
     success_url = reverse_lazy('articletag_list')
 
 
+# article and category to fetch the article based on the category.
+class CategoryArticleListView(ListView):
+    model = Article
+    template_name = 'category_article_list.html'
+    context_object_name = 'articles'
 
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        category = get_object_or_404(Category, pk=category_id)
+        return category.articles.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_id = self.kwargs['category_id']
+        context['category'] = get_object_or_404(Category, pk=category_id)
+        return context

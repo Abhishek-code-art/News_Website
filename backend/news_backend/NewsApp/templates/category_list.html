@@ -1,15 +1,15 @@
+<!-- newsapp/templates/newsapp/category_list.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Category List</title>
+    <title>Categories</title>
 </head>
 <body>
-    <h1>Category List</h1>
+    <h1>Categories</h1>
     <ul>
-        {% for category in object_list %}
-            <li><a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a></li>
+        {% for category in category_list %}
+            <li><a href="{% url 'category_article_list' category.pk %}">{{ category.name }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'category_create' %}">Create New Category</a>
 </body>
 </html>

@@ -1,7 +1,9 @@
+<!-- newsapp/templates/newsapp/article_form.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% if object %}Edit Article{% else %}Create Article{% endif %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <h1>{% if object %}Edit Article{% else %}Create Article{% endif %}</h1>
@@ -11,5 +13,13 @@
         <button type="submit">{% if object %}Update{% else %}Create{% endif %}</button>
     </form>
     <a href="{% url 'article_list' %}">Back to Article List</a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 </body>
 </html>

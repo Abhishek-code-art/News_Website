@@ -33,7 +33,8 @@ class Article(models.Model):
     authorID = models.ForeignKey(User, on_delete=models.CASCADE)
     publishDate = models.DateField()
     status = models.CharField(max_length=50)
-    categoryID = models.ForeignKey(Category, on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category, related_name='articles')
+    tags = models.ManyToManyField('Tag', through='ArticleTag')
 
     def __str__(self):
         return self.title
@@ -54,5 +55,3 @@ class ArticleTag(models.Model):
 
     def __str__(self):
         return f"{self.articleID} - {self.tagID}"
-
-
