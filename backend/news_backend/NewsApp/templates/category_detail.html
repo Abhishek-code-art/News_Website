@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Details</title>
+</head>
+<body>
+    <h1>Category: {{ category.name }}</h1>
+    <p>Description: {{ category.description }}</p>
+    
+    <h2>Articles in this Category</h2>
+    <ul>
+        {% for article in category.articles.all %}
+            <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'category_list' %}">Back to Category List</a>
+    <a href="{% url 'category_update' category.pk %}">Edit</a>
+    <a href="{% url 'category_delete' category.pk %}">Delete</a>
+</body>
+</html>

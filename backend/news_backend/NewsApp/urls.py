@@ -5,7 +5,8 @@ from .views import (
     CategoryListView, CategoryDetailView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView,
     ArticleListView, ArticleDetailView, ArticleCreateView, ArticleUpdateView, ArticleDeleteView,
     TagListView, TagDetailView, TagCreateView, TagUpdateView, TagDeleteView,
-    ArticleTagListView, ArticleTagDetailView, ArticleTagCreateView, ArticleTagUpdateView, CategoryArticleListView, ArticleTagDeleteView,
+    ArticleTagListView, ArticleTagDetailView, ArticleTagCreateView, ArticleTagUpdateView, CategoryArticleListView, 
+    TagArticleListView, ArticleTagDeleteView,
     home
 )
 
@@ -55,4 +56,6 @@ urlpatterns = [
     path('articletags/create/', ArticleTagCreateView.as_view(), name='articletag_create'),
     path('articletags/<int:pk>/update/', ArticleTagUpdateView.as_view(), name='articletag_update'),
     path('articletags/<int:pk>/delete/', ArticleTagDeleteView.as_view(), name='articletag_delete'),
+
+    path('tags/<int:tag_id>/articles/', TagArticleListView.as_view(), name='tag_article_list'),
 ]

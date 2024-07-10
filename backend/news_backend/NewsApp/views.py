@@ -187,3 +187,21 @@ class CategoryArticleListView(ListView):
         category_id = self.kwargs['category_id']
         context['category'] = get_object_or_404(Category, pk=category_id)
         return context
+
+# adding tags to the articles 
+class TagArticleListView(ListView):
+    model = Article
+    template_name = 'tag_article_list.html'
+    context_object_name = 'articles'
+
+    def get_queryset(self):
+        tag_id = self.kwargs['tag_id']
+        tag = get_object_or_404(Tag, pk=tag_id)
+        print(f"Fetching articles for tag: {tag.tagName}")
+        return tag.articles.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tag_id = self.kwargs['tag_id']
+        context['tag'] = get_object_or_404(Tag, pk=tag_id)
+        return context
