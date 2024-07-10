@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>{% if object %}Edit Article{% else %}Create Article{% endif %}</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% load custom_filters %}
 
@@ -38,6 +38,11 @@
         <div>
             <label for="id_tags">Tags:</label>
             {{ form.tags|add_class:"select2" }}
+        </div>
+
+        <div>
+            <label for="id_image">Image:</label>
+            {{ form.image }}  <!-- Add image field -->
         </div>
 
         <button type="submit">{% if object %}Update{% else %}Create{% endif %}</button>

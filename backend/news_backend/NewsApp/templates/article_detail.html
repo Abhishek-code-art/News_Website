@@ -5,6 +5,9 @@
 </head>
 <body>
     <h1>{{ object.title }}</h1>
+    {% if object.image %}
+        <p><img src="{{ object.image.url }}" alt="{{ object.title }}"></p>  <!-- Display image -->
+    {% endif %}
     <p>{{ object.content }}</p>
     <p>Author: {{ object.authorID.username }}</p>
     <p>Publish Date: {{ object.publishDate }}</p>

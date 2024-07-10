@@ -42,6 +42,7 @@ class Article(models.Model):
     status = models.CharField(max_length=50)
     categories = models.ManyToManyField(Category, related_name='articles')
     tags = models.ManyToManyField(Tag, through='ArticleTag', related_name='articles')
+    image = models.ImageField(upload_to='article_images/', null=True, blank=True)
 
     def __str__(self):
         return self.title
