@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 from .views import (
     RoleListView, RoleDetailView, RoleCreateView, RoleUpdateView, RoleDeleteView,
     UserListView, UserDetailView, UserCreateView, UserUpdateView, UserDeleteView,
@@ -58,4 +59,9 @@ urlpatterns = [
     path('articletags/<int:pk>/delete/', ArticleTagDeleteView.as_view(), name='articletag_delete'),
 
     path('tags/<int:tag_id>/articles/', TagArticleListView.as_view(), name='tag_article_list'),
+
+    # for authentication
+    # Example of applying login_required to a view
+    path('roles/create/', login_required(RoleCreateView.as_view()), name='role_create'),
+
 ]

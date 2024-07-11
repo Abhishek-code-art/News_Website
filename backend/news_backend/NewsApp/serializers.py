@@ -24,7 +24,8 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ['articleID', 'title', 'content', 'author', 'publishDate', 'status', 'category']
+        # fields = ['articleID', 'title', 'content', 'author', 'publishDate', 'status', 'category']
+        fields = '__all__'
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:

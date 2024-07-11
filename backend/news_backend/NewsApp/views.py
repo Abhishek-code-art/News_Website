@@ -3,57 +3,91 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import User, Role, Article, Category, Tag, ArticleTag
 from .forms import ArticleForm
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import User as AuthUser
+from .serializers import ArticleSerializer, CategorySerializer, TagSerializer
+from django.http import JsonResponse
 
 def home(request):
-    return render(request, 'home.html')
+    return JsonResponse({'message': 'Welcome to the home page'})
 
+class AdminRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
+    def has_permission(self):
+        return self.request.user.is_authenticated and self.request.user.is_admin
 
-class RoleListView(ListView):
+class RoleListView(AdminRequiredMixin, ListView):
     model = Role
     template_name = 'role_list.html'
 
-class RoleDetailView(DetailView):
+    def render_to_response(self, context, **response_kwargs):
+        roles = self.get_queryset()
+        data = list(roles.values('roleName', 'description'))
+        return JsonResponse(data, safe=False)
+
+class RoleDetailView(AdminRequiredMixin, DetailView):
     model = Role
     template_name = 'role_detail.html'
 
-class RoleCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        role = self.get_object()
+        data = {
+            'roleName': role.roleName,
+            'description': role.description
+        }
+        return JsonResponse(data)
+
+class RoleCreateView(AdminRequiredMixin, CreateView):
     model = Role
     fields = ['roleName', 'description']
     template_name = 'role_form.html'
     success_url = reverse_lazy('role_list')
 
-class RoleUpdateView(UpdateView):
+class RoleUpdateView(AdminRequiredMixin, UpdateView):
     model = Role
     fields = ['roleName', 'description']
     template_name = 'role_form.html'
     success_url = reverse_lazy('role_list')
 
-class RoleDeleteView(DeleteView):
+class RoleDeleteView(AdminRequiredMixin, DeleteView):
     model = Role
     template_name = 'role_confirm_delete.html'
     success_url = reverse_lazy('role_list')
 
-class UserListView(ListView):
+class UserListView(AdminRequiredMixin, ListView):
     model = User
     template_name = 'user_list.html'
 
-class UserDetailView(DetailView):
+    def render_to_response(self, context, **response_kwargs):
+        users = self.get_queryset()
+        data = list(users.values('username', 'email', 'roleID'))
+        return JsonResponse(data, safe=False)
+
+class UserDetailView(AdminRequiredMixin, DetailView):
     model = User
     template_name = 'user_detail.html'
 
-class UserCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        user = self.get_object()
+        data = {
+            'username': user.username,
+            'email': user.email,
+            'roleID': user.roleID
+        }
+        return JsonResponse(data)
+
+class UserCreateView(AdminRequiredMixin, CreateView):
     model = User
     fields = ['username', 'password', 'email', 'roleID']
     template_name = 'user_form.html'
     success_url = reverse_lazy('user_list')
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(AdminRequiredMixin, UpdateView):
     model = User
     fields = ['username', 'password', 'email', 'roleID']
     template_name = 'user_form.html'
     success_url = reverse_lazy('user_list')
 
-class UserDeleteView(DeleteView):
+class UserDeleteView(AdminRequiredMixin, DeleteView):
     model = User
     template_name = 'user_confirm_delete.html'
     success_url = reverse_lazy('user_list')
@@ -61,24 +95,37 @@ class UserDeleteView(DeleteView):
 class CategoryListView(ListView):
     model = Category
     template_name = 'category_list.html'
+    serializer_class = CategorySerializer
+
+    def render_to_response(self, context, **response_kwargs):
+        categories = self.get_queryset()
+        serializer = CategorySerializer(categories, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'category_detail.html'
+    serializer_class = CategorySerializer
 
-class CategoryCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        category = self.get_object()
+        serializer = CategorySerializer(category)
+        return JsonResponse(serializer.data)
+
+class CategoryCreateView(AdminRequiredMixin, CreateView):
+    model = Category
+    fields = ['name', 'description']
+    template_name = 'category_form.html'
+    serializer_class = CategorySerializer
+    success_url = reverse_lazy('category_list')
+
+class CategoryUpdateView(AdminRequiredMixin, UpdateView):
     model = Category
     fields = ['name', 'description']
     template_name = 'category_form.html'
     success_url = reverse_lazy('category_list')
 
-class CategoryUpdateView(UpdateView):
-    model = Category
-    fields = ['name', 'description']
-    template_name = 'category_form.html'
-    success_url = reverse_lazy('category_list')
-
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(AdminRequiredMixin, DeleteView):
     model = Category
     template_name = 'category_confirm_delete.html'
     success_url = reverse_lazy('category_list')
@@ -87,14 +134,29 @@ class ArticleListView(ListView):
     model = Article
     template_name = 'article_list.html'
 
+    def get_queryset(self):
+        return Article.objects.all()
+
+    def render_to_response(self, context, **response_kwargs):
+        articles = self.get_queryset()
+        serializer = ArticleSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'article_detail.html'
+    serializer_class = ArticleSerializer
 
-class ArticleCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        article = self.get_object()
+        serializer = ArticleSerializer(article)
+        return JsonResponse(serializer.data)
+
+class ArticleCreateView(AdminRequiredMixin, CreateView):
     model = Article
     form_class = ArticleForm
     template_name = 'article_form.html'
+    serializer_class = ArticleSerializer
     success_url = reverse_lazy('article_list')
 
     def form_valid(self, form):
@@ -103,7 +165,7 @@ class ArticleCreateView(CreateView):
         form.save_m2m()  # Save the many-to-many relationships
         return super().form_valid(form)
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(AdminRequiredMixin, UpdateView):
     model = Article
     form_class = ArticleForm
     template_name = 'article_form.html'
@@ -115,7 +177,7 @@ class ArticleUpdateView(UpdateView):
         form.save_m2m()  # Save the many-to-many relationships
         return super().form_valid(form)
     
-class ArticleDeleteView(DeleteView):
+class ArticleDeleteView(AdminRequiredMixin, DeleteView):
     model = Article
     template_name = 'article_confirm_delete.html'
     success_url = reverse_lazy('article_list')
@@ -123,24 +185,37 @@ class ArticleDeleteView(DeleteView):
 class TagListView(ListView):
     model = Tag
     template_name = 'tag_list.html'
+    serializer_class = TagSerializer
+
+    def render_to_response(self, context, **response_kwargs):
+        tags = self.get_queryset()
+        serializer = TagSerializer(tags, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 class TagDetailView(DetailView):
     model = Tag
     template_name = 'tag_detail.html'
+    serializer_class = TagSerializer
 
-class TagCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        tag = self.get_object()
+        serializer = TagSerializer(tag)
+        return JsonResponse(serializer.data)
+
+class TagCreateView(AdminRequiredMixin, CreateView):
+    model = Tag
+    fields = ['tagName']
+    template_name = 'tag_form.html'
+    serializer_class = TagSerializer
+    success_url = reverse_lazy('tag_list')
+
+class TagUpdateView(AdminRequiredMixin, UpdateView):
     model = Tag
     fields = ['tagName']
     template_name = 'tag_form.html'
     success_url = reverse_lazy('tag_list')
 
-class TagUpdateView(UpdateView):
-    model = Tag
-    fields = ['tagName']
-    template_name = 'tag_form.html'
-    success_url = reverse_lazy('tag_list')
-
-class TagDeleteView(DeleteView):
+class TagDeleteView(AdminRequiredMixin, DeleteView):
     model = Tag
     template_name = 'tag_confirm_delete.html'
     success_url = reverse_lazy('tag_list')
@@ -149,23 +224,36 @@ class ArticleTagListView(ListView):
     model = ArticleTag
     template_name = 'articletag_list.html'
 
+    def render_to_response(self, context, **response_kwargs):
+        article_tags = self.get_queryset()
+        data = list(article_tags.values('articleID', 'tagID'))
+        return JsonResponse(data, safe=False)
+
 class ArticleTagDetailView(DetailView):
     model = ArticleTag
     template_name = 'articletag_detail.html'
 
-class ArticleTagCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        article_tag = self.get_object()
+        data = {
+            'articleID': article_tag.articleID,
+            'tagID': article_tag.tagID
+        }
+        return JsonResponse(data)
+
+class ArticleTagCreateView(AdminRequiredMixin, CreateView):
     model = ArticleTag
     fields = ['articleID', 'tagID']
     template_name = 'articletag_form.html'
     success_url = reverse_lazy('articletag_list')
 
-class ArticleTagUpdateView(UpdateView):
+class ArticleTagUpdateView(AdminRequiredMixin, UpdateView):
     model = ArticleTag
     fields = ['articleID', 'tagID']
     template_name = 'articletag_form.html'
     success_url = reverse_lazy('articletag_list')
 
-class ArticleTagDeleteView(DeleteView):
+class ArticleTagDeleteView(AdminRequiredMixin, DeleteView):
     model = ArticleTag
     template_name = 'articletag_confirm_delete.html'
     success_url = reverse_lazy('articletag_list')
@@ -181,6 +269,11 @@ class CategoryArticleListView(ListView):
         category_id = self.kwargs['category_id']
         category = get_object_or_404(Category, pk=category_id)
         return category.articles.all()
+    
+    def render_to_response(self, context, **response_kwargs):
+        articles = self.get_queryset()
+        serializer = ArticleSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -199,6 +292,11 @@ class TagArticleListView(ListView):
         tag = get_object_or_404(Tag, pk=tag_id)
         print(f"Fetching articles for tag: {tag.tagName}")
         return tag.articles.all()
+    
+    def render_to_response(self, context, **response_kwargs):
+        articles = self.get_queryset()
+        serializer = ArticleSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

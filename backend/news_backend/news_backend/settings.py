@@ -109,7 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -137,3 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# authentication 
+LOGIN_URL = '/login/'  # Set your login URL
+LOGIN_REDIRECT_URL = '/'  # Set redirect URL after login
+
