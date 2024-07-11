@@ -17,11 +17,10 @@ class App extends Component {
           <Header/>
           <div className="App-header">
             <h1>Welcome to the THEPublive News.</h1>
-            
-            <main>
+          </div>
+          <main>
               <ItemsList/>
             </main>
-          </div>
           <Footer />
         </div>
     );
