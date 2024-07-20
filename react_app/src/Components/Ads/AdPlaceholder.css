@@ -1,0 +1,39 @@
+.adPlaceholder {
+    min-width: 100%; /* Ensure it spans the full width of the container */
+    min-height: 273px; /* Minimum height as required */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    /* background-color: #f0f0f0; Assuming a light gray background */
+}
+
+.adPlaceholder #div-gpt-ad-1522659065797-0 {
+    width: 970px; /* Standard ad width */
+    height: 250px; /* Standard ad height */
+    /* background-color: #ffffff; Light gray background to visualize the ad space */
+    min-width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+.ad-image {
+    max-width: 100%; /* Ensure the image width does not exceed the container's width */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensure the image covers the container area */
+    max-height: 100%;
+}
+
+/* Responsive styling */
+@media (min-width: 1024px) {
+    .adPlaceholder {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .adPlaceholder {
+        display: none;
+    }
+}

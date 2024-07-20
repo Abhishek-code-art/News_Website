@@ -1,0 +1,272 @@
+/* Reset default styles */
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    outline: none;
+    text-decoration: none;
+}
+
+/* Apply specific styles for the header */
+header {
+    display: flex; /* Use Flexbox for the header container */
+    align-items: center; /* Vertically center items */
+    unicode-bidi: isolate;
+    background-color: #011e29;
+    font-family: "Lato", sans-serif;
+    top: 0;
+    z-index: 4;
+    transition: none;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 10px;
+    height: 70px;
+}
+
+@media (min-width: 768px) {
+    #header .container {
+        height: 100px;
+        justify-content: space-between;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
+.lftEl {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    line-height: 40px;
+}
+
+.rgtLinks {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    line-height: 40px;
+}
+
+.exploreSearch {
+    display: flex;
+    align-items: center;
+}
+
+.btnExplore {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navIco {
+    margin-right: 5px;
+}
+
+.searchLink {
+    display: block;
+    position: static;
+    text-align: center;
+}
+.searchLink a {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    cursor: pointer;
+    color: white;
+    padding: 3px 10px;
+    font-size: 14px;
+    width: 90px;
+    margin-right: 0;
+    font-weight: 700;
+}
+
+.freeTag picture {
+    text-align: center;
+    padding-top: 7px;
+    padding-right: 4px;
+}
+
+.date-weather {
+    display: flex;
+    flex-direction: row;
+}
+
+.hDate, .hWeather {
+    color: #fff;
+    font-size: 14px;
+}
+
+.logo {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+}
+
+.links a, .signin .login .sign-in, .signin .login .afterLogin {
+    margin-left: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.hdrSubcribe .txt {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+.hdrSubcribe {
+    margin-top: 13px;
+}
+
+.echoSDK_navBarL2 {
+    display: flex;
+    color: #fff;
+    align-items: center;
+    min-height: 33px;
+}
+.echoSDK_a {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: #fff;
+    color: #011e29;
+}
+.headSpanTxt {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.crownIcon img {
+    margin-left: 5px;
+}
+
+@media (max-width: 1023px) {
+    .scrollT #header {
+        animation: animationDownN0 0.4s forwards 0s ease-in;
+        animation-delay: 1s;
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-width: 1200px) {
+    header#header:before {
+        background-color: #011e29;
+        content: "";
+        max-width: 1140px;
+        position: absolute;
+        left: calc((1140px - 100vw) / 2);
+        top: 0;
+        height: 100%;
+        z-index: -1;
+        margin: 0 auto;
+    }
+}
+
+/* Responsive styles for mobile view */
+@media (max-width: 767px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+        margin-left: 0;
+    }
+
+    .lftEl, .rgtLinks, .date-weather, .links, .hdrSubcribe .txt {
+        display: none;
+    }
+
+    .logo {
+        order: 2;
+        flex-grow: 0;
+        text-align: left;
+    }
+
+    .btnExplore {
+        order: 1;
+    }
+
+    .navIco {
+        display: inline-block; /* Ensure navIco is displayed in mobile view */
+        margin-right: 10px;
+    }
+
+    .searchLink {
+        order: 3;
+        display: flex;
+        align-items: center;
+    }
+
+    .searchLink a {
+        margin-left: 0;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .navIco {
+        display: flex; /* Hide navIco on larger screens */
+    }
+}
+
+/* header fixed on scroll */
+.header--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+
+
+
+
+
+
+
+
+  /* new code */
+
+#header .date-weather>div:first-child {
+    padding-left: 0;
+}
+
+#header .date-weather .hDate {
+    position: relative;
+}
+@media (min-width: 1024px) {
+    #header .date-weather>div {
+        padding: 0 8px;
+    }
+}
+
+#header .date-weather>div {
+    line-height: 15px;
+}
+
+@media (min-width: 1100px) {
+    #header .date-weather {
+        font-size: 14px;
+    }
+}
+#header .date-weather {
+    padding-top: 10px;
+    min-height: 33px;
+}
+
+@media (min-width: 768px) {
+    #header .date-weather {
+        display: flex;
+    }
+}

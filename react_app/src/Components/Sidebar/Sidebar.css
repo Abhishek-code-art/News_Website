@@ -1,0 +1,240 @@
+.sidebar-top-icon {
+    display: flex;
+    padding: 20px 20px 0;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 360px;
+    height: 100%;
+    background-color: white;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar-header {
+    background-color: #ffffff;
+    /* padding: 20px 20px 0; */
+    min-height: 50px;
+    box-sizing: border-box;
+    /* display: -webkit-flex; */
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    /* margin-bottom: 9px; */
+  }
+
+  .sidebar-header .weather {
+    margin-left: 35px;
+    margin-right: 7px;
+    text-align: left;
+    font-size: 12px;
+    color: #343434;
+  }
+  .sidebar-header date {
+    color: #a6a6a6;
+  }
+  
+  .sidebar-content {
+    overflow-y: scroll;
+    height: calc(100% - 76px);
+    box-sizing: border-box;
+    background-color: #fff;
+    border-top: solid 1px #c2c2c2;
+    margin-top: 14px;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-footer {
+    padding: 15px;
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 34px;
+    cursor: pointer;
+    position: relative;
+    width: 16px;
+    height: 26px;
+    margin: 8px 0 0 80px;
+    color: #757575;
+  }
+  
+  .sign-in-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .sign-in-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .navLogo {
+    width: 230px;
+    height: 30px;
+    position: relative;
+    background-size: 100%;
+    background-image: url(https://www.hindustantimes.com/static-content/1y/ht/menu-ht-logo.webp);
+    background-repeat: no-repeat;
+  }
+
+
+
+
+  /* MIDDLE SECTION OF SIDEBAR */
+
+.nav-sec {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 0;
+  }
+  
+  .nav-sec ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-sec li {
+    padding: 10px;
+  }
+  
+  .nav-sec li.active a {
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .nav-sec li.collapse > div {
+    cursor: pointer;
+  }
+  
+  .nav-sec li.collapse ul {
+    display: none;
+  }
+  
+  .nav-sec li.collapse.active ul {
+    display: block;
+  }
+  
+  .nav-sec ul {
+    list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 12px 10px 0 15px;
+  }
+  .nav-sec ul li {
+    display: -webkit-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      flex: 1 0 50%;
+      color: #fff;
+      font-weight: 900;
+      line-height: 42px;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  }
+  .nav-sec ul li a {
+      line-height: 42px;
+      padding: 0 0px;
+      width: 100%;
+      color: #424242;
+      font-size: 16px;
+      text-transform: uppercase;
+  }
+  .nav-sec ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .nav-sec ul li.collapse {
+      flex: 1 0 100%;
+      border-top: 1px solid #c2c2c2;
+  }
+  
+  
+  
+  
+  
+  
+  .nav-sec {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 0;
+  }
+  
+  .nav-sec ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .nav-sec li {
+    padding: 10px 15px;
+    flex: 1 0 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .nav-sec li a {
+    color: #424242;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .nav-sec li.active a {
+    color: #424242;
+  }
+  
+  .nav-sec li.collapse > div {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-sec li.collapse ul {
+    display: none;
+    padding-left: 15px;
+  }
+  
+  .nav-sec li.collapse.active ul {
+    display: block;
+  }
+  
+  .nav-sec li.collapse ul li {
+    padding: 5px 0;
+    flex: 1 0 100%;
+    font-size: 14px;
+  }
+  
+  .nav-sec li.collapse ul li a {
+    color: #424242;
+  }
+  

@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f1f1f1;
 }
 
 .App-logo {
@@ -21,4 +23,16 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/*  */
+.articles-section {
+  display: inline-flex;
+  max-width: 100%;
 }
