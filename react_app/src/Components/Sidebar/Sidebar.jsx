@@ -165,6 +165,24 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 </ul>
                 </li>
             </ul>
+
+            {/* new */}
+
+            <ul className="nav-expanded">
+                {/* <li className="menuhead"><em>Explore Hindustan Times</em></li> */}
+                <li><a href="https://www.hindustantimes.com/subscribe-newsletter"><em>HT Newsletters</em></a></li>
+                <li><a href="https://www.hindustantimes.com/weather"><em>Weather Today</em></a></li>
+                <li><a href=" https://www.htmedia.in/hindustantimes-com"><em>About Us</em></a></li>
+                <li><a href="https://www.hindustantimes.com/contact-us"><em>Contact Us</em></a></li>
+                <li><a href="https://www.hindustantimes.com/privacy-policy"><em>Privacy Policy</em></a></li>
+                <li><a href="https://www.hindustantimes.com/termsofuse"><em>Terms of Use</em></a></li>
+                <li><a href="https://www.hindustantimes.com/disclaimer"><em>Disclaimer</em></a></li>
+                <li><a href="https://www.hindustantimes.com/rate-card"><em>Print Ad Rates</em></a></li>
+                <li><a href="https://www.hindustantimes.com/dnpa-code-of-ethics-for-digital-news-websites"><em>Code of Ethics</em></a></li>
+                <li><a href="https://www.hindustantimes.com/sitemap"><em>Sitemap</em></a></li>
+                <li><a href="https://www.hindustantimes.com/rss"><em>RSS Feeds</em></a></li>
+                <li><a href="https://www.hindustantimes.com/subscriber-agreement-and-terms-of-use"><em>Subscription - Terms of Use</em></a></li>
+            </ul>
         </div>
 
           
@@ -174,8 +192,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {/* Add more sections as needed */}
         </div>
         <div className="sidebar-footer">
-          <button className="sign-in-btn">Sign in</button>
-          {/* Add social media links here */}
+        <div className="footerLogin logedIn">
+            <div className="shareArticle">
+                <div className="shareTitle">Follow Us On</div>
+                <div className="shareIcons">
+                    <a target="_blank" rel="nofollow noreferrer" href="#" className="wt" onClick={() => handleSocialClick('Whatsapp')}></a>
+                    <a target="_blank" rel="nofollow noreferrer" href="https://www.facebook.com/hindustantimes" className="fb" onClick={() => handleSocialClick('Facebook')}></a>
+                    <a target="_blank" rel="nofollow noreferrer" href="https://twitter.com/htTweets" className="tw" onClick={() => handleSocialClick('Twitter')}></a>
+                    <a target="_blank" rel="nofollow noreferrer" href="https://www.linkedin.com/company/hindustantimes" className="ln" onClick={() => handleSocialClick('Linkedin')}></a>
+                </div>
+            </div>
+              
+            <div className="fSignOut">
+                <a className="sign-in" data-id="Signin,1" href="JavaScript:Void(0);" onClick={() => handleSignInClick()}>Sign in<i><img width="45" height="45" src="https://www.hindustantimes.com/static-content/1y/ht/signin-icon2.png" alt="Login" /></i></a>
+            </div>
+        </div>
         </div>
       </div>
     </div>

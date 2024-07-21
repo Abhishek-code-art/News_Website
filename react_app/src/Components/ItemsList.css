@@ -12,7 +12,7 @@
   /* Each column of categorized articles */
   .column {
     width: 100%;
-    padding: 15px;
+    padding: 6px;
     background-color: #ffffff;
     margin-bottom: 20px;
     border: 1px solid #ffffff;
@@ -21,7 +21,6 @@
   
   /* Category title */
   h2 {
-    border-bottom: 3px solid #0077b6;
     padding-bottom: 10px;
     margin-bottom: 20px;
     color: #333;
@@ -210,4 +209,11 @@
   text-decoration: underline;
   text-decoration-color: #00b1cd;
   text-decoration-thickness: 1px;
+}
+
+.secHdg.htImpressionTrackingTop {
+  padding-bottom: 0;
+  border-bottom-style: none;
+  padding-top: 10px;
+  margin-bottom: 5px;
 }

@@ -56,7 +56,8 @@ header {
 
 .exploreSearch {
     display: flex;
-    align-items: center;
+    align-items: start;
+    margin-bottom: 5px;
 }
 
 .btnExplore {
@@ -76,11 +77,11 @@ header {
 }
 .searchLink a {
     display: flex;
-    align-items: center;
+    align-items: start;
     margin-left: 15px;
     cursor: pointer;
     color: white;
-    padding: 3px 10px;
+    padding: 0 10px 3px 10px;
     font-size: 14px;
     width: 90px;
     margin-right: 0;
@@ -89,7 +90,7 @@ header {
 
 .freeTag picture {
     text-align: center;
-    padding-top: 7px;
+    padding-top: 5px;
     padding-right: 4px;
 }
 
@@ -117,6 +118,8 @@ header {
     margin-left: 15px;
     color: #fff;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .hdrSubcribe .txt {
@@ -238,7 +241,7 @@ header {
 
   /* new code */
 
-#header .date-weather>div:first-child {
+/* #header .date-weather>div:first-child {
     padding-left: 0;
 }
 
@@ -268,5 +271,86 @@ header {
 @media (min-width: 768px) {
     #header .date-weather {
         display: flex;
+    }
+} */
+
+
+
+
+/* #header .date-weather {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    min-height: 33px;
+    font-size: 14px; /* Default font size, can adjust as needed */
+/* } */
+
+#header .date-weather>div {
+    padding: 0 8px;
+    line-height: 15px;
+}
+
+#header .date-weather .hDate {
+    position: relative;
+    padding-left: 0px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: grey;
+}
+
+@media (min-width: 1024px) {
+    #header .date-weather>div {
+        padding: 0 8px;
+    }
+}
+
+@media (min-width: 1100px) {
+    #header .date-weather {
+        font-size: 14px;
+    }
+} */
+
+
+
+#header .date-weather {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    min-height: 33px;
+    font-size: 14px;
+    color: white; /* Adjust to match the text color in the image */
+}
+
+#header .date-weather>div {
+    padding: 0 8px;
+    line-height: 15px;
+}
+
+#header .date-weather .hDate {
+    position: relative;
+}
+
+#header .date-weather .separator {
+    padding: 0 8px;
+}
+
+#header .date-weather .hWeather {
+    display: flex;
+    align-items: center;
+}
+
+#header .date-weather .weather-icon {
+    margin-left: 4px; /* Adjust the spacing between the temperature and the icon */
+}
+
+@media (min-width: 1024px) {
+    #header .date-weather>div {
+        padding: 0 8px;
+    }
+}
+
+@media (min-width: 1100px) {
+    #header .date-weather {
+        font-size: 14px;
     }
 }

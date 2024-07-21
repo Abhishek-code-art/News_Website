@@ -8,6 +8,7 @@ import Footer from './Footer/footer';
 import './MainLayout.css';
 import AdPlaceholder from './Ads/AdPlaceholder';
 import HeadMenu from './HeadMenu/HeadMenu';
+import BreakingNews from './BreakingNews/BreakingNews';
 
 const MainLayout = () => {
   return (
@@ -15,10 +16,11 @@ const MainLayout = () => {
       <AdPlaceholder/>
       <Header />
       <HeadMenu />
+      <BreakingNews />
       <div id="articles-container">
-        <LatestNews />
+        <LatestNews Name="Latest-Left"/>
         <ItemsList />
-        <LatestNews />
+        <LatestNews Name="Latest-Right"/>
       </div>
       <Footer />
     </div>

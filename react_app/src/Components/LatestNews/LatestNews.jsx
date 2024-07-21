@@ -3,10 +3,9 @@ import LatestNewsItem from './LatestNewsItem';
 import ViewAllLink from './ViewAllLink';
 import './LatestNews.css';
 
-const LatestNews = () => {
+const LatestNews = (props) => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     fetch('http://localhost:8000/articles/')
       .then(response => {
@@ -31,7 +30,7 @@ const LatestNews = () => {
   }
 
   return (
-    <div className="leftNav">
+    <div className={`leftNav ${props.Name}`}>
       <div id="divLatestNews" placementindex="1">
         <div className="lftNews">
           <h2 className="secHdg htImpressionTrackingTop">

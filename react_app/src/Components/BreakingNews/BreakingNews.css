@@ -1,0 +1,129 @@
+/* container and mHide class css */
+@media (min-width: 1100px) {
+    .container.mHide {
+        flex-wrap: inherit;
+        gap: 0;
+        justify-content: inherit;
+        width: auto;
+        padding: 0;
+        height: 35px;
+    }
+}
+
+.breakingNews {
+    height: 100%;
+}
+.headline a {
+    color: #fff;
+}
+@media (min-width: 1024px) {
+    .container.mHide {
+        margin: 0 auto;
+        height: 35px;
+    }
+
+    .mHide {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .container.mHide {
+        max-width: 1125px;
+        height: 35px;
+    }
+
+    .breakingNews {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        width: calc(100% - 20px);
+        max-height: 100%;
+    }
+
+    .breakingNews .headline {
+        padding-top: 0;
+        height: 18px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        text-align: left;
+    }
+
+    .breakingNews .socialEl {
+        position: static;
+        flex-shrink: 0;
+        width: 28px;
+    }
+}
+
+.breakingNews {
+    background-color: #222222;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Lato", sans-serif;
+    position: relative;
+    z-index: 2;
+    padding: 0 10px;
+}
+
+.breakingNews .title {
+    width: 135px;
+    text-align: center;
+    background-color: #d43d35;
+    text-transform: uppercase;
+    font-weight: 700;
+    transform: skewX(-0.03turn);
+    height: 18px;
+    line-height: 18px;
+    flex-shrink: 0;
+}
+
+.breakingNews .title span {
+    position: relative;
+    padding-left: 4px;
+}
+
+/* .breakingNews .headline {
+    padding: 10px 0 0;
+} */
+
+.breakingNews .socialEl {
+    z-index: 2;
+    margin-left: auto;
+    right: 0;
+    top: 0;
+}
+
+.socialEl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sharePopUp .shareIcons .icons a {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-size: cover;
+}
+
+.sharePopUp .shareIcons .icons .wt {
+    background-image: url('../../assets/icons/whatsapp.png'); /* Replace with your actual icon paths */
+}
+
+.sharePopUp .shareIcons .icons .fb {
+    background-image: url('../../assets/icons/facebook.png');
+}
+
+.sharePopUp .shareIcons .icons .tw {
+    background-image: url('../../assets/icons/twitter.png');
+}
+
+.sharePopUp .shareIcons .icons .ln {
+    background-image: url('../../assets/icons/linkedin.png');
+}
