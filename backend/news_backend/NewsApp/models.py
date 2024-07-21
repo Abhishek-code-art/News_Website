@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone 
 
 class Role(models.Model):
     roleID = models.AutoField(primary_key=True)
@@ -60,11 +61,11 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     authorID = models.ForeignKey(User, on_delete=models.CASCADE)
-    publishDate = models.DateField()
     status = models.CharField(max_length=50)
     categories = models.ManyToManyField(Category, related_name='articles')
     tags = models.ManyToManyField(Tag, through='ArticleTag', related_name='articles')
     image = models.ImageField(upload_to='article_images/', null=True, blank=True)
+    publishDateTime = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title
