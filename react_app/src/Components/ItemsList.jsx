@@ -49,9 +49,10 @@ const ItemsList = () => {
               <span>]</span>
             </span>
         </div>
-          {categorizedArticles[category].map(article => (
-            <div key={article.articleID} className="news-item">
-              <h3><a href={`http://localhost:8000/articles/${article.articleID}`} style={{color: "#000000"}}>{article.title}</a></h3>
+          {categorizedArticles[category].map((article, index) => (
+            <div key={article.articleID} className={`news-item ${index === 0 ? 'first-news-item' : 'other-news-item'}`}>
+              <div className="change-style" style={{width: "100%", padding: "5px"}}>
+              <h3><a href={`/article/${article.articleID}`} style={{color: "#000000"}}>{article.title}</a></h3>
               <div className='categoryPublishTime'>
                 <div className='secName'>
                   <a href={`http://localhost:8000/categories/${article.category_id}/articles`}>{category}</a>
@@ -61,8 +62,9 @@ const ItemsList = () => {
                 </div>
                 
               </div>
-              {article.image && <img src={`http://localhost:8000${article.image}`} alt={article.title} id="publishImage"/>}
-              <p className="articleContent">{article.content}</p>
+              </div>
+              {article.image && <img src={`http://localhost:8000${article.image}`} alt={article.title} id="publishImage" className={`${index==0 ? 'first-news-item-image':'other-news-item-image'}`}/>}
+              {/* <p className="articleContent">{article.content}</p> */}
             </div>
           ))}
         </div>

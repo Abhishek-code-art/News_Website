@@ -1,0 +1,65 @@
+.fullStory .adMinHeight313, .fullStory .adHeight313, .fullStory .adHeight270 {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+@media (min-width: 768px) {
+    .fullStory .adHeight313, .fullStory .adMinHeight313 {
+        margin-top: 12px;
+        margin-bottom: 10px;
+    }
+}
+@media (min-width: 768px) {
+    .detailPage .adHeight313, .detailPage .adMinHeight313 {
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .adMinHeight313 {
+        height: 313px;
+    }
+}
+@media (min-width: 1024px) {
+    .adMinHeight313 {
+        height: 313px;
+    }
+}
+@media (min-width: 768px) {
+    .adHeight313, .adMinHeight313 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+.adMinHeight313 {
+    background: #e5e5e5;
+}
+
+
+
+.storyAd {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.fullStory .storyAd::before, .fullStory .topAdMweb.dHide::before {
+    content: "Story continues below advertisement";
+}
+@media (min-width: 768px) {
+    .storyAd::before {
+        margin-bottom: 4px;
+    }
+}
+
+.storyAd::before {
+    content: "Advertisement";
+    display: block;
+    color: #777;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 2px;
+}
+
+.storyAd iframe {
+    max-width: 100%;
+}

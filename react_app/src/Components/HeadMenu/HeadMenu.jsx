@@ -39,7 +39,7 @@ const HeadMenu = () => {
           <li className="active">
             <a
               className=""
-              href="https://www.hindustantimes.com"
+              href="#"
               data-id="Home,1"
               data-value="Home"
             >
@@ -49,7 +49,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/latest-news"
+              href="#"
               data-id="Latest News,1"
               data-value="Latest News"
             >
@@ -59,7 +59,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/cricket"
+              href="#"
               data-id="Cricket,1"
               data-value="Cricket"
             >
@@ -74,7 +74,7 @@ const HeadMenu = () => {
             <a
               data-google-interstitial="false"
               className=""
-              href="https://www.hindustantimes.com/ht-exclusive"
+              href="#"
               data-id="HT Premium,1"
               data-value="HT Premium"
             >
@@ -84,7 +84,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/htcity"
+              href="#"
               data-id="HTCity,1"
               data-value="HTCity"
             >
@@ -94,7 +94,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/india-news"
+              href="#"
               data-id="India,1"
               data-value="India"
             >
@@ -104,7 +104,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/world-news"
+              href="#"
               data-id="World,1"
               data-value="World"
             >
@@ -114,7 +114,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/entertainment"
+              href="#"
               data-id="Entertainment,1"
               data-value="Entertainment"
             >
@@ -124,7 +124,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/trending"
+              href="#"
               data-id="Trending,1"
               data-value="Trending"
             >
@@ -134,7 +134,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/astrology"
+              href="#"
               data-id="Astrology,1"
               data-value="Astrology"
             >
@@ -144,7 +144,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/lifestyle"
+              href="#"
               data-id="Lifestyle,1"
               data-value="Lifestyle"
             >
@@ -154,7 +154,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/real-estate"
+              href="#"
               data-id="Real Estate,1"
               data-value="Real Estate"
             >
@@ -164,7 +164,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className=""
-              href="https://www.hindustantimes.com/education"
+              href="#"
               data-id="Education,1"
               data-value="Education"
             >
@@ -174,7 +174,7 @@ const HeadMenu = () => {
           <li className="">
             <a
               className="cityl1cohort"
-              href="https://www.hindustantimes.com/cities/delhi"
+              href="#"
               data-id="Cities,1"
               data-value="Cities"
             >
@@ -186,7 +186,7 @@ const HeadMenu = () => {
               className=""
               rel="nofollow"
               target="_blank"
-              href="https://shopnow.hindustantimes.com"
+              href="#"
               data-id="Shop Now,1"
               data-value="Shop Now"
             >

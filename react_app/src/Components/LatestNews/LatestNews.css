@@ -84,6 +84,8 @@
 
 .catName a {
     color: #00b1cd;
+    font-weight: 700;
+    font-size: 0.8rem;
 }
 
 /* Article content */

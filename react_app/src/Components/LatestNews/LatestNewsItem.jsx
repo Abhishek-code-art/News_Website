@@ -7,13 +7,13 @@ const LatestNewsItem = ({ category_id, category_name, title, url, publishedTime,
   const categoryId = category_id ? `${category_id}` : '#';
   const categoryName = category_name || 'Unknown';
   const validUrl = url ? url : '#';
-  const articleUrl = `${validUrl}/articles/${id}`;
+  const articleUrl = `/article/${id}`;
   const categoryUrl = `http://localhost:8000/categories/${categoryId}/articles/`;
 
   return (
     <div className="row">
       <div className="catName pt10">
-        <a href={categoryUrl}>{categoryName}</a>
+        <a href={categoryUrl}>{categoryName.toUpperCase()}</a>
       </div>
       <h3 className="hdg3">
         <Link to={articleUrl}>{title}</Link>

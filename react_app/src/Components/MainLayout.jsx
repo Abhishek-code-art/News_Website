@@ -9,6 +9,7 @@ import './MainLayout.css';
 import AdPlaceholder from './Ads/AdPlaceholder';
 import HeadMenu from './HeadMenu/HeadMenu';
 import BreakingNews from './BreakingNews/BreakingNews';
+import Footer_ht from './Footer/Footer_ht';
 
 const MainLayout = () => {
   return (
@@ -23,6 +24,7 @@ const MainLayout = () => {
         <LatestNews Name="Latest-Right"/>
       </div>
       <Footer />
+      <Footer_ht />
     </div>
   );
 };
