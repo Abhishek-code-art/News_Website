@@ -19,14 +19,31 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['categoryID', 'name', 'description']
 
 class ArticleSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=True)
-    category = CategorySerializer(read_only=True)
+    author = serializers.SerializerMethodField()
+    category_id = serializers.SerializerMethodField()
+    category_name = serializers.SerializerMethodField()
+    user_id = serializers.SerializerMethodField()
+    username = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
-        fields = ['articleID', 'title', 'content', 'author', 'status', 'category', 'tags', 'image', 'publishDateTime']
-        # fields = '__all__'
+        fields = ['articleID', 'title', 'content', 'author', 'status', 'tags', 'image', 'publishDateTime', 'category_id', 'category_name', 'user_id', 'username']
 
+    def get_author(self, obj):
+        return UserSerializer(obj.authorID).data
+
+    def get_category_id(self, obj):
+        return obj.category_id
+
+    def get_category_name(self, obj):
+        return obj.category_name
+
+    def get_user_id(self, obj):
+        return obj.user_id
+
+    def get_username(self, obj):
+        return obj.username
+    
 # Article category wise.
 class ArticleCategorySerializer(serializers.ModelSerializer):
     category_id = serializers.IntegerField()

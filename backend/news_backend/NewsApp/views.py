@@ -4,10 +4,11 @@ from django.urls import reverse_lazy
 from .models import User, Role, Article, Category, Tag, ArticleTag
 from .forms import ArticleForm
 from django.contrib.auth.models import User as AuthUser
-from .serializers import ArticleSerializer, CategorySerializer, TagSerializer, ArticleCategorySerializer
+from .serializers import ArticleSerializer, CategorySerializer, TagSerializer, ArticleCategorySerializer, UserSerializer
 from django.db.models import OuterRef, Subquery
 from django.http import JsonResponse
 from django.utils import timezone
+from django.views.generic.detail import DetailView
 
 def home(request):
     return JsonResponse({'message': 'Welcome to the home page'})
@@ -65,12 +66,8 @@ class UserDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         user = self.get_object()
-        data = {
-            'username': user.username,
-            'email': user.email,
-            'roleID': user.roleID
-        }
-        return JsonResponse(data)
+        serializer = UserSerializer(user);
+        return JsonResponse(serializer.data)
 
 class UserCreateView(CreateView):
     model = User
@@ -153,12 +150,25 @@ class ArticleListView(ListView):
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'article_detail.html'
-    serializer_class = ArticleSerializer
 
     def get(self, request, *args, **kwargs):
         article = self.get_object()
+        
+        # Subquery to get category information for the article
+        category_subquery = Category.objects.filter(
+            articles__articleID=OuterRef('articleID')
+        ).values('categoryID', 'name')[:1]
+
+        # Annotate the article with category and user information
+        article = Article.objects.filter(articleID=article.articleID).annotate(
+            category_id=Subquery(category_subquery.values('categoryID')),
+            category_name=Subquery(category_subquery.values('name')),
+            user_id=Subquery(User.objects.filter(userID=OuterRef('authorID')).values('userID')[:1]),
+            username=Subquery(User.objects.filter(userID=OuterRef('authorID')).values('username')[:1])
+        ).first()
+
         serializer = ArticleSerializer(article)
-        return JsonResponse(serializer.data)
+        return JsonResponse(serializer.data, safe=False)
 
 class ArticleCreateView(CreateView):
     model = Article
@@ -284,11 +294,26 @@ class CategoryArticleListView(ListView):
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         category = get_object_or_404(Category, pk=category_id)
-        return category.articles.all()
+
+        # Annotate the articles with category information
+        articles = category.articles.annotate(
+            category_id=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('categoryID')[:1]
+            ),
+            category_name=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('name')[:1]
+            )
+        ).order_by('-publishDateTime')
+        
+        return articles
     
     def render_to_response(self, context, **response_kwargs):
         articles = self.get_queryset()
-        serializer = ArticleSerializer(articles, many=True)
+        serializer = ArticleCategorySerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     def get_context_data(self, **kwargs):
