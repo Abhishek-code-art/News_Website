@@ -42,8 +42,8 @@ const LatestNews = (props) => {
               <LatestNewsItem
                 key={article.articleID}
                 id={article.articleID}
-                category_id={article.category_id}
-                category_name={article.category_name}
+                category_id={article.categories[0].categoryID}
+                category_name={article.categories[0].name}
                 title={article.title}
                 url="http://localhost:8000/"
                 publishedTime={new Date(article.publishDateTime).toLocaleString()}

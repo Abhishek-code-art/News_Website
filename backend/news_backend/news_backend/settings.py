@@ -104,14 +104,31 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordsValidator',
     },
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+CORS_ALLOW_ALL_ORIGINS=True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "http://127.0.0.1:8000",
+#     "http://localhost:8000"
+# ]
+CORS_ALLOW_HEADERS = [
+    '*',
 ]
+
+# CORS_ALLOW_METHODS = [
+#     'GET',
+#     'POST',
+#     'PUT',
+#     'DELETE',
+#     'OPTIONS',
+# ]
+
+ALLOWED_HOSTS = ["*"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

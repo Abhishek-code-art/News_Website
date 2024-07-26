@@ -9,6 +9,8 @@ from django.db.models import OuterRef, Subquery
 from django.http import JsonResponse
 from django.utils import timezone
 from django.views.generic.detail import DetailView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control
 
 def home(request):
     return JsonResponse({'message': 'Welcome to the home page'})
@@ -129,15 +131,28 @@ class ArticleListView(ListView):
     template_name = 'article_list.html'
 
     def get_queryset(self):
-        # Subquery to get category information for each article
-        category_subquery = Category.objects.filter(
-            articles__articleID=OuterRef('articleID')
-        ).values('categoryID', 'name')[:1]
-
-        # Annotate the articles with category information
+        # Annotate the articles with category and user information
         articles = Article.objects.annotate(
-            category_id=Subquery(category_subquery.values('categoryID')),
-            category_name=Subquery(category_subquery.values('name'))
+            category_id=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('categoryID')[:1]
+            ),
+            category_name=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('name')[:1]
+            ),
+            user_id=Subquery(
+                User.objects.filter(
+                    userID=OuterRef('authorID')
+                ).values('userID')[:1]
+            ),
+            username=Subquery(
+                User.objects.filter(
+                    userID=OuterRef('authorID')
+                ).values('username')[:1]
+            )
         ).order_by('-publishDateTime')
         
         return articles
@@ -154,17 +169,28 @@ class ArticleDetailView(DetailView):
     def get(self, request, *args, **kwargs):
         article = self.get_object()
         
-        # Subquery to get category information for the article
-        category_subquery = Category.objects.filter(
-            articles__articleID=OuterRef('articleID')
-        ).values('categoryID', 'name')[:1]
-
         # Annotate the article with category and user information
         article = Article.objects.filter(articleID=article.articleID).annotate(
-            category_id=Subquery(category_subquery.values('categoryID')),
-            category_name=Subquery(category_subquery.values('name')),
-            user_id=Subquery(User.objects.filter(userID=OuterRef('authorID')).values('userID')[:1]),
-            username=Subquery(User.objects.filter(userID=OuterRef('authorID')).values('username')[:1])
+            category_id=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('categoryID')[:1]
+            ),
+            category_name=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('name')[:1]
+            ),
+            user_id=Subquery(
+                User.objects.filter(
+                    userID=OuterRef('authorID')
+                ).values('userID')[:1]
+            ),
+            username=Subquery(
+                User.objects.filter(
+                    userID=OuterRef('authorID')
+                ).values('username')[:1]
+            )
         ).first()
 
         serializer = ArticleSerializer(article)
@@ -285,7 +311,7 @@ class ArticleTagDeleteView(DeleteView):
     success_url = reverse_lazy('articletag_list')
 
 
-# article and category to fetch the article based on the category.
+@method_decorator(cache_control(max_age=3600), name='dispatch')
 class CategoryArticleListView(ListView):
     model = Article
     template_name = 'category_article_list.html'
@@ -295,7 +321,6 @@ class CategoryArticleListView(ListView):
         category_id = self.kwargs['category_id']
         category = get_object_or_404(Category, pk=category_id)
 
-        # Annotate the articles with category information
         articles = category.articles.annotate(
             category_id=Subquery(
                 Category.objects.filter(

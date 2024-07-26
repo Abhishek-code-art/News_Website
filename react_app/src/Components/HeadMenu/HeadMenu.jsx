@@ -39,7 +39,7 @@ const HeadMenu = () => {
           <li className="active">
             <a
               className=""
-              href="#"
+              href="/"
               data-id="Home,1"
               data-value="Home"
             >

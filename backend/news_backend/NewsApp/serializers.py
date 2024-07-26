@@ -46,12 +46,15 @@ class ArticleSerializer(serializers.ModelSerializer):
     
 # Article category wise.
 class ArticleCategorySerializer(serializers.ModelSerializer):
-    category_id = serializers.IntegerField()
-    category_name = serializers.CharField()
+    author = serializers.SerializerMethodField()
+    categories = CategorySerializer(many=True, read_only=True)
 
     class Meta:
         model = Article
-        fields = ['articleID', 'title', 'content', 'status', 'image', 'publishDateTime', 'category_id', 'category_name']
+        fields = ['articleID', 'title', 'content', 'status', 'image', 'publishDateTime', 'categories', 'author']
+
+    def get_author(self, obj):
+        return UserSerializer(obj.authorID).data
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:

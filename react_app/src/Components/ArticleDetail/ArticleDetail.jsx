@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import './ArticleDetail.css';
 import Ads from './Ads';
 import Carousel from './Carousel';
+import NextStory from '../NewStory/NextStory';
 
 const ArticleDetail = ({ fetchUrl }) => {
   const { id } = useParams();
@@ -93,32 +94,22 @@ const ArticleDetail = ({ fetchUrl }) => {
   return (
     <div className="article-detail">
       <div className='article-header'>
-        {/* {article.category_id && (
-          <div className="foryou-categories article-cat">
-            <Link to={`http://localhost:8000/categories/${article.category_id}/articles`} className="category-link">
-              <h5>{article.category_name}</h5>
-            </Link>
-          </div>
-        )} */}
         <h1 className='article-title'>{article.title || ''}</h1>
         {article.author && <p>By: {article.author.username || ''}</p>}
         <p>Date Updated: {formatDateTime(article.publishDateTime).date} {formatDateTime(article.publishDateTime).time}</p>
       </div>
       <img src={getImageUrl(article.image)} className='article-img' alt={article.title || ''} />
-      {/* <img src={article.image} className='article-img' alt={article.title} /> */}
       <div className='article-body'>
         <p className='article-short forYoutext'>
-          {/* {showFullDescription ? article.content : `${article.content.slice(0, 180)}...`}
-          <button onClick={toggleDescription}>
-            <b>{showFullDescription ? 'close' : 'more'}</b>
-          </button> */}
           {article.content || ''}
         </p>
-        {/* <div className='article-content' dangerouslySetInnerHTML={{ __html: article.content }}></div> */}
-        {/* <p>Date Updated: {formatDateTime(article.publishDateTime).date} {formatDateTime(article.publishDateTime).time}</p> */}
       </div>
       <Ads />
       <Carousel />
+      
+      <div className="next_story_container">
+        <NextStory category_id={article.category_id} />
+      </div>
     </div>
   );
 };

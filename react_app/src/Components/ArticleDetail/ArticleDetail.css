@@ -1,11 +1,11 @@
 .article-detail {
-    padding: 20px;
+    padding: 10px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f1f1f1;
     margin: 20px;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
+    width: 40%;
   }
   
   .article-detail h1 {
@@ -20,6 +20,18 @@
   }
 
   .article-img {
-    max-width: 40%;
+    width: 100%;
   }
   
+  .article-header {
+    text-align: start;
+  }
+
+  .article-body {
+    text-align: start;
+  }
+
+  .article-detail .next_story_container {
+    width: 100%;
+    margin: 0 4px 16px 4px;
+  }

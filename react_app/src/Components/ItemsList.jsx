@@ -29,11 +29,14 @@ const ItemsList = () => {
 
   // Group articles by category
   const categorizedArticles = articles.reduce((acc, article) => {
-    const categoryName = article.category_name;
-    if (!acc[categoryName]) {
-      acc[categoryName] = [];
+    if (article.categories && article.categories.length > 0) {
+      article.categories.forEach(category => {
+        if (!acc[category.name]) {
+          acc[category.name] = [];
+        }
+        acc[category.name].push(article);
+      });
     }
-    acc[categoryName].push(article);
     return acc;
   }, {});
 

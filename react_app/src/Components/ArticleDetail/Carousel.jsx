@@ -5,56 +5,56 @@ import styled from 'styled-components';
 const items = [
   {
     id: '1',
-    title: 'Sample Title 1',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '2',
-    title: 'Sample Title 2',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '3',
-    title: 'Sample Title 3',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '4',
-    title: 'Sample Title 4',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '5',
-    title: 'Sample Title 5',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '6',
-    title: 'Sample Title 6',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '7',
-    title: 'Sample Title 7',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '8',
-    title: 'Sample Title 8',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   },
   {
     id: '9',
-    title: 'Sample Title 9',
-    image: 'https://via.placeholder.com/200x112',
+    title: 'Publive',
+    image: '/ad-image.png',
     link: '#'
   }
 ];
@@ -95,9 +95,9 @@ const Arrow = styled.div`
 
 const CarouselContent = styled.div`
   display: flex;
-  overflow-x: auto;
   scroll-behavior: smooth;
   transition: transform 0.5s ease-in-out;
+  overflow:  hidden;
 `;
 
 const CarouselItem = styled.div`
