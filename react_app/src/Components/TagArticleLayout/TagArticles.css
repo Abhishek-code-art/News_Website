@@ -1,19 +1,18 @@
-#articles-container {
-    margin: 0 auto;
+#tag-wise-article-section {
     display: flex;
     justify-content: center;
 }
 
 @media (max-width: 480px) {
-    #articles-container {
+    #tag-wise-article-section {
         display: block;
         width: 100%;
-        margin-top: 70px !important;
+        margin-top: 60px !important;
     }
 }
-
+    
 @media (max-width: 767px) {
-    #articles-container {
+    #tag-wise-article-section {
         margin-top: 0;
     }
 }

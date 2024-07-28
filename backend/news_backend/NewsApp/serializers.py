@@ -33,33 +33,34 @@ class ArticleSerializer(serializers.ModelSerializer):
         return UserSerializer(obj.authorID).data
 
     def get_category_id(self, obj):
-        return obj.category_id
+        return getattr(obj, 'category_id', None)
 
     def get_category_name(self, obj):
-        return obj.category_name
+        return getattr(obj, 'category_name', None)
 
     def get_user_id(self, obj):
-        return obj.user_id
+        return getattr(obj, 'user_id', None)
 
     def get_username(self, obj):
-        return obj.username
-    
-# Article category wise.
-class ArticleCategorySerializer(serializers.ModelSerializer):
-    author = serializers.SerializerMethodField()
-    categories = CategorySerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Article
-        fields = ['articleID', 'title', 'content', 'status', 'image', 'publishDateTime', 'categories', 'author']
-
-    def get_author(self, obj):
-        return UserSerializer(obj.authorID).data
+        return getattr(obj, 'username', None)
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ['tagID', 'tagName']
+
+# Article category wise.
+class ArticleCategorySerializer(serializers.ModelSerializer):
+    author = serializers.SerializerMethodField()
+    categories = CategorySerializer(many=True, read_only=True)
+    tags = TagSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Article
+        fields = ['articleID', 'title', 'content', 'status', 'image', 'publishDateTime', 'categories', 'author', 'tags']
+
+    def get_author(self, obj):
+        return UserSerializer(obj.authorID).data
 
 class ArticleTagSerializer(serializers.ModelSerializer):
     article = ArticleSerializer(read_only=True)

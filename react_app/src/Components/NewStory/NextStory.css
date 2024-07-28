@@ -5,21 +5,26 @@
 @media (min-width: 768px) {
     .next-story-container {
         margin-bottom: 16px;
-        padding: 16px;
+        /* padding: 16px; */
     }
 }
 
-.next-story-container #next-story-article fieldset {
+.next-story-container #next-story-article .next-story-section fieldset {
     border-style: solid hidden hidden hidden;
+    text-align: center;
+    border-color: #000;
+    border-width: 1px;
+    width: 80%;
+    margin: 10px auto;
 }
-.next-story-container #next-story-article fieldset legend {
+.next-story-container #next-story-article .next-story-section fieldset legend {
     font-size: 14px;
     font-weight: 400;
     color: #424242;
     padding: 0 14px;
     font-style: italic;
 }
-.next-story-container #next-story-article fieldset img {
+.next-story-container #next-story-article .next-story-section fieldset img {
     width: 16px;
     margin: 0 auto;
 }
@@ -30,7 +35,7 @@
 
 .next-story-section {
     text-align: start;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 .next-story-section .next-story-title {
     font-size: 30px;
@@ -81,6 +86,61 @@
 
 .readMoreStory {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.readMoreStory .moreButton a {
+    width: 330px;
+    display: inline-block;
+    border-radius: 12px;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #00b1cd;
+    padding: 5px 0;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #00b1cd;
+}
+
+/* css for tags section */
+.tags-section  {
+    min-width: 100%;
+}
+
+.tags-section .tags-container {
+    position: relative;
+    overflow: hidden;
+    display: -webkit-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.tags-section .tags-container .tags {
+    display: -webkit-flex;
+    align-items: center;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    line-height: 20px;
+    padding-right: 5px;
+    scroll-behavior: smooth;
+}
+.tags-section .tags-container .tags li {
+    margin-right: 8px;
+    border: solid 1px #d2d2d2;
+    border-color: rgba(0,177,205,0.2);
+    background-color: rgba(0,177,205,0.06);
+    height: 35px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.tags-section .tags-container .tags li a {
+    font-family: "Lato", SANS-SERIF;
+    font-size: 14px;
+    display: -webkit-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 4px 12px;
+    box-sizing: border-box;
 }

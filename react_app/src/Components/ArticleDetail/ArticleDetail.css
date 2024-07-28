@@ -5,7 +5,13 @@
     margin: 20px;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 40%;
+    width: 35%;
+  }
+  @media (max-width: 490px) {
+    .article-detail {
+      width: 100% !important;
+      margin: 0 !important;
+    }
   }
   
   .article-detail h1 {
@@ -32,6 +38,9 @@
   }
 
   .article-detail .next_story_container {
-    width: 100%;
-    margin: 0 4px 16px 4px;
+    max-width: 100%;
+    margin: 16px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #d2d2d2;
   }

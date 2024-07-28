@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './BreakingNews.css';
+import shareIcon from '../../assets/icons/share.png';
 
 const BreakingNews = () => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -19,14 +20,17 @@ const BreakingNews = () => {
                         Prince George set to mark 11th birthday with two parties, but things will change next year due to 'morbid rule'
                     </a>
                 </div>
-                <div className="socialEl" onClick={handlePopupToggle}>
+                <div className="socialEl" >
                     <label
                         className="share share-candidate"
                         data-url="https://www.hindustantimes.com/world-news/us-news/prince-george-set-to-mark-11th-birthday-with-two-parties-but-things-will-change-next-year-due-to-morbid-rule-101721570968635.html"
                         data-title="Prince George set to mark 11th birthday with two parties, but things will change next year due to 'morbid rule'"
                         title="share"
                         htmlFor="sharePop-101632898402056"
-                    ></label>
+                        onClick={handlePopupToggle}
+                    >
+                        <img src={`${shareIcon}`} alt="" />
+                    </label>
                     <input id="sharePop-101632898402056" type="checkbox" name="shareElPop" />
                     {isPopupVisible && (
                         <label className="sharePopUp" htmlFor="sharePop-101632898402056">

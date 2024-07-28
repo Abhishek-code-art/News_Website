@@ -99,7 +99,7 @@
 
 .socialEl {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: space-between;
 }
@@ -126,4 +126,38 @@
 
 .sharePopUp .shareIcons .icons .ln {
     background-image: url('../../assets/icons/linkedin.png');
+}
+
+.sharePopUp {
+    background-color: white;
+    padding: 5px;
+}
+.sharePopUp .shareIcons {
+    display: flex;
+    flex-wrap: wrap;
+}
+.copyUrl {
+    color: black;
+    margin-top: 10px;
+}
+.sharePopUp .icons {
+    display: flex;
+}
+
+#sharePop-101632898402056 {
+    display: none;
+}
+
+/* Style the label to display the image */
+.share-candidate img {
+    width: 24px; /* Adjust the size as needed */
+    height: 24px; /* Adjust the size as needed */
+    cursor: pointer;
+    background-color: white;
+}
+
+@media (max-width: 490px) {
+    .container.mHide {
+        display: none;
+    }
 }

@@ -3,7 +3,6 @@
     padding: 20px 20px 0;
 }
 
-
 .sidebar {
     position: fixed;
     top: 0;
@@ -94,9 +93,6 @@
     background-repeat: no-repeat;
   }
 
-
-
-
   /* MIDDLE SECTION OF SIDEBAR */
 
 .nav-sec {
@@ -167,11 +163,6 @@
       border-top: 1px solid #c2c2c2;
   }
   
-  
-  
-  
-  
-  
   .nav-sec {
     background-color: #fff;
     font-family: Arial, sans-serif;
@@ -237,16 +228,6 @@
   .nav-sec li.collapse ul li a {
     color: #424242;
   }
-
-
-
-
-
-
-
-
-
-
 
   /*  */
   .nav-sec ul.nav-expanded {
@@ -315,9 +296,6 @@
         background-color: transparent;
     }
 }
-
-
-
 
 /*  */
 @media (min-width: 768px) {

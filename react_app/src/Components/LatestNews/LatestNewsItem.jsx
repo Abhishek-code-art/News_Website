@@ -8,7 +8,7 @@ const LatestNewsItem = ({ category_id, category_name, title, url, publishedTime,
   const categoryName = category_name || 'Unknown';
   const validUrl = url ? url : '#';
   const articleUrl = `/article/${id}`;
-  const categoryUrl = `http://localhost:8000/categories/${categoryId}/articles/`;
+  const categoryUrl = `/categories/${categoryId}/${category_name}/articles/`;
 
   return (
     <div className="row">

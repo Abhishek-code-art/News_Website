@@ -120,6 +120,7 @@ ul {
 .headMenu ul.leftFixedNav {
   display: flex;
   align-items: center;
+  flex-direction: row;
   flex-wrap: nowrap;
   background: #fff;
   width: 100%;
@@ -304,9 +305,8 @@ ul {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     overflow-y: auto;
-    z-index: 1001;
+    z-index: 1000;
     padding-top: 20px;
   }
 
@@ -329,8 +329,189 @@ ul {
   }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   #headMenu {
+    display: none;
+  }
+} */
+
+
+@media (max-width: 490px) {
+  .headMenu {
+    position: fixed;
+    top: 40px; /* This will position it right below the header */
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 10px 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .headMenu ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  .headMenu ul li {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .headMenu ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .headMenu ul li a:hover {
+    background-color: #f5f5f5;
+    color: #007bff;
+  }
+  /* .headMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .headMenu ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .headMenu ul li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .headMenu ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .headMenu ul li a:hover {
+    background-color: #f5f5f5;
+    color: #007bff;
+  }
+
+  .headMenu .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .headMenu ul.leftFixedNav li {
+    margin: 0;
+  }
+
+  .headMenu ul.leftFixedNav li:first-child {
+    margin-left: 0;
+  } */
+
+
+
+
+  #headMenu .container {
+    position: relative;
+    padding: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0 auto;
+  }
+
+  .headMenu .leftSecNav {
+    box-shadow: none;
+  }
+
+  .scrollT .headMenu {
+    animation: animationDownN3 0.4s forwards 0s ease-in;
+    animation-delay: 1s;
+  }
+
+  .scrollT #header,
+  body.scrollB .headMenu,
+  body.scrollT .headMenu {
+    animation: none;
+  }
+
+  .scrollB .headMenu {
+    top: 100px;
+  }
+
+  .l1Sticky .headMenu {
+    position: fixed;
+  }
+
+  .l1Sticky.scrollT .leftSecNav {
+    animation: animationDownNH2 0.4s forwards 0s ease-in;
+    z-index: 1;
+  }
+
+  .headMenu ul.leftFixedNav li {
+    margin: 0 20px;
+  }
+
+  .dHide {
+    display: none;
+  }
+
+
+  .headMenu .container {
+    width: auto;
+  }
+
+  .headMenu ul.leftFixedNav {
+    overflow-x: auto;
+  }
+
+  .headMenu .leftSecNav.moreUl {
+    overflow: inherit;
+  }
+
+  .headMenu ul.leftFixedNav li.moreNav,
+  .headMenu ul.leftSecNav li.moreNav {
+    z-index: 4;
+    display: block;
+  }
+
+
+  html body div.headMenu,
+  div.headMenu {
+    margin: 0 auto 10px;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  body div.headMenu .leftFixedNav {
+    z-index: 1;
+  }
+
+  div.headMenu .leftFixedNav:before,
+  div.headMenu .leftSecNav:before {
+    background-color: #fff;
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 33px;
+    z-index: -1;
+    left: calc((1140px - (100vw + 40px)) / 2);
+  }
+
+  body div.headMenu .leftFixedNav::-webkit-scrollbar {
     display: none;
   }
 }

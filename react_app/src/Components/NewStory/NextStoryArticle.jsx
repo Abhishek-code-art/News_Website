@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import "./NextStory.css";
 import Ads from '../ArticleDetail/Ads';
 
-const NextStoryArticle = ({ category_id, category_name, image, title, content, username, url, publishedTime, id }) => {
+const NextStoryArticle = ({ category_id, category_name, image, title, content, username, url, publishedTime, tags = [],id }) => {
   const categoryId = category_id ? `${category_id}` : '#';
   const categoryName = category_name || 'Unknown';
+
+  const [showFullContent, setShowFullContent] = useState(false);
+
+  const handleReadMoreClick = () => {
+    setShowFullContent(true);
+  };
 
   const formatDateTime= (dateTime) => {
     if (!dateTime) return { date: '', time: '' };
@@ -21,6 +27,10 @@ const NextStoryArticle = ({ category_id, category_name, image, title, content, u
 
   return (
     <div className="next-story-section">
+        <fieldset>
+          <legend>Next Story</legend>
+          <img src="/money.gif" alt="down-arrow" />
+        </fieldset>
         <h1 className="next-story-title">{title}</h1>
       <div className="next-story-author">
         <div>
@@ -52,19 +62,37 @@ const NextStoryArticle = ({ category_id, category_name, image, title, content, u
                 {image && <img src={`${url}${image}`} alt={title} id="new-story-image" />}
                 <div>
                     <p>
-                        {content}
+                    {showFullContent ? content : content.substring(0, 100) + '...'}
                     </p>
+
+                    {showFullContent && (
+                      <div className="tags-section">
+                        <div className="tags-container">
+                          <ul className="tags">
+                            {tags.map((tag, index) => (
+                              <li key={index}>
+                                <a href={`/tags/${tag.tagID}/${tag.tagName}/articles`}>
+                                  <span className="tag">{tag.tagName}</span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}   
                 </div>
             </div>
 
             <Ads />
-            <div class="readMoreStory">
-                <div class="moreButton">
-                    <a href="javascript:void(0);">
-                        <span>Read More</span>
-                    </a>
-                </div>
-            </div>
+            {!showFullContent && (
+              <div className="readMoreStory">
+                  <div className="moreButton">
+                      <a href="javascript:void(0);" onClick={handleReadMoreClick}>
+                          <span>Read More</span>
+                      </a>
+                  </div>
+              </div>
+            )}
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const Footer = () => {
         <div className="footer_subscribe">
           <div className="subscribe_input">
             <label htmlFor="" className="footerSubscribe">
-
+              Subscribe to our best newsletters
             </label>
 
             <div className="subscribe_box">

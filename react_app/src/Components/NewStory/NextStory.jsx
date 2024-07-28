@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./NextStory.css";
 import NextStoryArticle from "./NextStoryArticle";
 
-const NextStory = ({ category_id }) => {
+const NextStory = ({ category_id, article_id }) => {
     const [articles, setArticles] = useState([]);
     const [error, setError] = useState(null);
 
@@ -26,17 +26,11 @@ const NextStory = ({ category_id }) => {
         return <div>Error: {error.message}</div>;
     }
 
-
     return (
         <div className="next-story-container">
             <div id="next-story-article" placementindex="1">
-                <fieldset>
-                    <legend>Next Story</legend>
-                    <img src="/money.gif" alt="down-arrow" />
-                </fieldset>
-
-                {articles.map((article) => (
-                    <NextStoryArticle
+                {articles.slice(0,5).map((article) => (
+                    article.articleID !== article_id && (<NextStoryArticle
                         key={article.articleID}
                         id={article.articleID}
                         category_id={article.categories[0].category_id}
@@ -47,7 +41,8 @@ const NextStory = ({ category_id }) => {
                         username={article.author.username}
                         url="http://localhost:8000/"
                         publishedTime={new Date(article.publishDateTime).toLocaleString()}
-                    />
+                        tags={article.tags}
+                    />)
                 ))}
             </div>
         </div>

@@ -184,6 +184,7 @@ const Footer_ht = () => {
               </li>
             </ul>
           </div>
+          <div class="copy_right"> © 2024 ThePublive </div>
         </div>
       </div>
     )

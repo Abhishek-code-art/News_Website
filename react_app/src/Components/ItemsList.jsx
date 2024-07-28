@@ -52,13 +52,15 @@ const ItemsList = () => {
               <span>]</span>
             </span>
         </div>
-          {categorizedArticles[category].map((article, index) => (
+          {categorizedArticles[category].map((article, index) => {
+            const categoryObj = article.categories.find(cat => cat.name === category);
+            return (
             <div key={article.articleID} className={`news-item ${index === 0 ? 'first-news-item' : 'other-news-item'}`}>
               <div className="change-style" style={{width: "100%", padding: "5px"}}>
               <h3><a href={`/article/${article.articleID}`} style={{color: "#000000"}}>{article.title}</a></h3>
               <div className='categoryPublishTime'>
-                <div className='secName'>
-                  <a href={`http://localhost:8000/categories/${article.category_id}/articles`}>{category}</a>
+                <div className='secName'> 
+                  <a href={`/categories/${categoryObj.categoryID}/${categoryObj.name}/articles`}>{category}</a>
                 </div>
                 <div>
                   <p id="publishedDateTime"><strong>Published on:</strong> {new Date(article.publishDateTime).toLocaleString()}</p>
@@ -69,7 +71,7 @@ const ItemsList = () => {
               {article.image && <img src={`http://localhost:8000${article.image}`} alt={article.title} id="publishImage" className={`${index==0 ? 'first-news-item-image':'other-news-item-image'}`}/>}
               {/* <p className="articleContent">{article.content}</p> */}
             </div>
-          ))}
+          );})}
         </div>
       ))}
     </div>

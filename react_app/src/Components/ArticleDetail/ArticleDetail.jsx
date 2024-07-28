@@ -90,7 +90,6 @@ const ArticleDetail = ({ fetchUrl }) => {
     return <div>No post details available.</div>;
   }
 
-  
   return (
     <div className="article-detail">
       <div className='article-header'>
@@ -108,7 +107,7 @@ const ArticleDetail = ({ fetchUrl }) => {
       <Carousel />
       
       <div className="next_story_container">
-        <NextStory category_id={article.category_id} />
+        <NextStory category_id={article.category_id} article_id={article.articleID}/>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ from .models import User, Role, Article, Category, Tag, ArticleTag
 from .forms import ArticleForm
 from django.contrib.auth.models import User as AuthUser
 from .serializers import ArticleSerializer, CategorySerializer, TagSerializer, ArticleCategorySerializer, UserSerializer
-from django.db.models import OuterRef, Subquery
+from django.db.models import OuterRef, Subquery, Prefetch
 from django.http import JsonResponse
 from django.utils import timezone
 from django.views.generic.detail import DetailView
@@ -14,6 +14,7 @@ from django.views.decorators.cache import cache_control
 
 def home(request):
     return JsonResponse({'message': 'Welcome to the home page'})
+
 
 class RoleListView(ListView):
     model = Role
@@ -321,7 +322,9 @@ class CategoryArticleListView(ListView):
         category_id = self.kwargs['category_id']
         category = get_object_or_404(Category, pk=category_id)
 
-        articles = category.articles.annotate(
+        articles = category.articles.prefetch_related(
+            Prefetch('tags', queryset=Tag.objects.only('tagID', 'tagName'))
+        ).annotate(
             category_id=Subquery(
                 Category.objects.filter(
                     articles__articleID=OuterRef('articleID')
@@ -357,7 +360,31 @@ class TagArticleListView(ListView):
         tag_id = self.kwargs['tag_id']
         tag = get_object_or_404(Tag, pk=tag_id)
         print(f"Fetching articles for tag: {tag.tagName}")
-        return tag.articles.all()
+
+        articles = tag.articles.annotate(
+            category_id=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('categoryID')[:1]
+            ),
+            category_name=Subquery(
+                Category.objects.filter(
+                    articles__articleID=OuterRef('articleID')
+                ).values('name')[:1]
+            ),
+            user_id=Subquery(
+                User.objects.filter(
+                    userID=OuterRef('authorID')
+                ).values('userID')[:1]
+            ),
+            username=Subquery(
+                User.objects.filter(
+                    userID=OuterRef('authorID')
+                ).values('username')[:1]
+            )
+        )
+        
+        return articles
     
     def render_to_response(self, context, **response_kwargs):
         articles = self.get_queryset()
