@@ -242,7 +242,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: auto !important;
+  z-index: 1000 !important;
 }
 
 /* New code */
@@ -337,12 +337,18 @@ ul {
 
 
 @media (max-width: 490px) {
+  #headmenu {
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+  }
   .headMenu {
     position: fixed;
     top: 40px; /* This will position it right below the header */
     left: 0;
     right: 0;
-    z-index: 1001;
+    z-index: 1000 !important;
     background-color: #fff;
     display: flex;
     flex-direction: column;

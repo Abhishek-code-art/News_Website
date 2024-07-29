@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <div className="nav-sec">
             <ul>
                 <li className="active">
-                <a href="https://www.hindustantimes.com" className="hamClick" data-vars-section="Home"><em>Home</em></a>
+                <a href="/" className="hamClick" data-vars-section="Home"><em>Home</em></a>
                 </li>
                 <li>
                 <a href="/htls/hindustan-times-leadership-summit-2023" data-id="htls-2023,2" className="hamClick" data-vars-section="HTLS 2023"><em>HTLS 2023</em></a>

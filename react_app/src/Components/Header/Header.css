@@ -191,9 +191,9 @@ header {
         margin-left: 0;
     }
 
-    .lftEl, .rgtLinks, .date-weather, .links, .hdrSubcribe .txt {
+    /* .lftEl, .rgtLinks, .date-weather, .links, .hdrSubcribe .txt {
         display: none;
-    }
+    } */
 
     .logo {
         order: 2;
@@ -235,6 +235,56 @@ header {
     left: 0;
     right: 0;
   }
+
+@media (max-width: 490px) {
+    #header {
+        background-color: #011e29;
+        font-family: "Lato", sans-serif;
+        position: fixed;
+        top: 0;
+        z-index: 1000 !important;
+        width: 100%;
+    }
+
+    #header .container {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        padding: 0 10px;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+
+    #header .container .lftEl {
+        display: inline !important;
+    }
+    .lftEl .exploreSearch .btnExplore .navIco {
+        display: inline !important;
+    }
+
+    #header .container .lftEl .exploreSearch .btnExplore .navIco picture {
+        display: inline !important;
+    }
+
+    #header .container .lftEl .exploreSearch .btnExplore strong {
+        display: none;
+    }
+    #header .container .lftEl .exploreSearch .searchLink {
+        display: none !important;
+    }
+
+    #header .container .lftEl .date-weather {
+        display: none !important;
+    }
+    #header .container .rgtLinks {
+        display: none !important;
+    }
+
+    .logo.logoGroup a picture img {
+        width: 150px;
+        height: auto;
+    }
+}
 
 #header .date-weather>div {
     padding: 0 8px;
